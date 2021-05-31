@@ -1,0 +1,85 @@
+﻿@model KonusarakOgren.Web.Dto.Exams.CreateExamDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row" style="padding:10px;">
+        <div class="col-lg-12" style="border:1px solid silver;">
+            <div class="form-group">
+                <label>Sınav Başlığı</label>
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control"})
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding:10px;">
+        @for (int i = 1; i <= 5; i++)
+        {
+
+            var options = new[] { "A", "B", "C", "D", "E" };
+
+            <div class="col-xs-12 col-lg-6" style="border:1px solid silver;">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label>Soru @i</label>
+                            @Html.TextBoxFor(x => x.Questions[i - 1].Text, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-lg-6">
+                        <div class="form-group">
+                            <label>A Şıkkı</label>
+                            @Html.TextBoxFor(x => x.Questions[i - 1].OptionA, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-lg-6">
+                        <div class="form-group">
+                            <label>B Şıkkı</label>
+                            @Html.TextBoxFor(x => x.Questions[i - 1].OptionB, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-lg-6">
+                        <div class="form-group">
+                            <label>C Şıkkı</label>
+                            @Html.TextBoxFor(x => x.Questions[i - 1].OptionC, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-lg-6">
+                        <div class="form-group">
+                            <label>D Şıkkı</label>
+                            @Html.TextBoxFor(x => x.Questions[i - 1].OptionD, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-lg-6">
+                        <div class="form-group">
+                            <label>E Şıkkı</label>
+                            @Html.TextBoxFor(x => x.Questions[i - 1].OptionE, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-lg-6">
+                        <div class="form-group">
+                            <label>Doğru Şık</label>
+
+                            @Html.DropDownListFor(x=> x.Questions[i - 1].TrueOption, options.Select((y,yi)=> new SelectListItem() { Value = yi.ToString(), Text = options[yi] }), new { @class="form-control" })
+                      
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row" style="padding:10px 0px;">
+        <div class="col-xs-12">
+            @Html.ValidationSummary()
+            <button type="submit" class="btn btn-primary" >
+                Oluştur
+            </button>
+        </div>
+    </div>
+}

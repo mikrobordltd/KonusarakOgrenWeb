@@ -1,0 +1,25 @@
+﻿@model List<KonusarakOgren.Web.Exam>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Sınav Listesi</h2>
+
+<table class="table table-striped" style="width:100%;">
+    @foreach (var exam in Model)
+    {
+    <tr>
+        <td>
+            @exam.Title
+        </td>
+        <td style="width:200px">
+            <a href="/Exams/Delete/@exam.Id" class="btn btn-sm btn-danger">
+                Sil
+            </a>
+            <a href="/Exams/Edit/@exam.Id" class="btn btn-sm btn-primary">
+                Düzenle
+            </a>
+        </td>
+    </tr>
+    }
+</table>
